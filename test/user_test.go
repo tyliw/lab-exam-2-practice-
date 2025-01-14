@@ -2,7 +2,6 @@ package unit
 
 import (
 	"fmt"
-	// "githib/unit-test-se67/entity"
 	"lab-exam/entity"
 	"testing"
 
