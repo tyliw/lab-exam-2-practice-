@@ -272,7 +272,26 @@ func TestPhoneFormat(t *testing.T) {
 
 		g.Expect(ok).To(BeFalse())
 		g.Expect(err).NotTo(BeNil())
-		g.Expect(err.Error()).To(Equal(fmt.Sprintf("Phone: %s does not validate as stringlength(10|10)", user.Phone)))
+		g.Expect(err.Error()).To(Equal("Phone must be a 10-digit number"))
+	})
+
+	t.Run(`phone incorrect format`, func(t *testing.T) {
+		user := entity.User{
+			StudentID: 	"B6506469",
+			FirstName: 	"Ravipon",
+			LastName: 	"Mungdee",
+			Email: 		"test@gmail.com",
+			Phone: 		"abcdefghij",		// ผิดตรงนี้ Phone มี format ไม่ถูกต้อง format ต้องมีตัวเลขทั้งหมด 10 ตัว (ผิดตัวตรงตัวอักษร)
+			Profile: 	"profile.pdf",
+			LinkIn: 	"https://www.linkedin.com/company/ilink/",
+			GenderID: 	1,
+		}
+		
+		ok, err := govalidator.ValidateStruct(user)
+
+		g.Expect(ok).To(BeFalse())
+		g.Expect(err).NotTo(BeNil())
+		g.Expect(err.Error()).To(Equal("Phone must be a 10-digit number"))
 	})
 }
 

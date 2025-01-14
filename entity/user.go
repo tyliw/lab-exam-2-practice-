@@ -10,7 +10,7 @@ type User struct {
 	FirstName string `valid:"required~FirstName is required"`
 	LastName  string `valid:"required~LastName is required"`
 	Email     string `valid:"required~Email is required, email~Email is invalid"`
-	Phone     string `valid:"required~Phone is required, stringlength(10|10)"`
+	Phone     string `valid:"required~Phone is required, matches(^\\d{10}$)~Phone must be a 10-digit number"`
 	Profile   string `gorm:"type:longtext"`
 	LinkIn    string `valid:"required~LinkIn is required, url~Url LinkIn is invalid"`
 	// GenderID ทำหน้าที่เป็น FK
